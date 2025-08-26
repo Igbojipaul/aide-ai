@@ -1,36 +1,151 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Aide AI — AI-Powered Blog & Content Generator
 
-## Getting Started
+Aide AI is a **Next.js 14 (App Router)** project that helps you generate platform-optimized blog posts and social content with AI.  
+It uses **Clerk** for authentication, **MongoDB Atlas** for storage, and **Gemini (Google AI)** for text generation.
 
-First, run the development server:
+---
 
+## ✨ Features
+
+- 🔐 **Authentication** — Secure sign-in / sign-up with Clerk  
+- 🤖 **AI-Powered Writing** — Generate platform-specific posts (LinkedIn, Twitter, Medium, Instagram, etc.)  
+- 🗂️ **Conversation Memory** — Continue chats with full context  
+- 📑 **Markdown Support** — AI content is rendered beautifully with markdown & Tailwind Typography  
+- 💾 **Database Integration** — Store users, conversations, and AI responses in MongoDB  
+- 🎨 **Modern UI** — Styled with TailwindCSS + ShadCN/UI + Lucide Icons  
+
+---
+
+## 🛠️ Tech Stack
+
+- [Next.js 14 (App Router)](https://nextjs.org/)  
+- [Clerk](https://clerk.com/) — Authentication & user management  
+- [MongoDB Atlas](https://www.mongodb.com/atlas) — Cloud database  
+- [Mongoose](https://mongoosejs.com/) — ODM for MongoDB  
+- [Gemini API](https://ai.google.dev/) — AI content generation  
+- [TailwindCSS](https://tailwindcss.com/) + [ShadCN/UI](https://ui.shadcn.com/) — UI components  
+- [Lucide Icons](https://lucide.dev/) — Modern SVG icons  
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
 ```bash
+git clone https://github.com/your-username/aide-ai.git
+cd aide-ai
+
+2. Install Dependencies
+npm install
+
+3. Environment Variables
+
+Create a .env.local file and add:
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+MONGODB_URI=your_mongodb_connection_string
+GEMINI_API_KEY=your_gemini_api_key
+
+
+4. Run Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit http://localhost:3000
+ 🚀
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+ 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+├── .next/               
+├── app/               # Next.js App Router pages
+│   ├── sign-in/       # Clerk sign-in
+│   ├── sign-up/       # Clerk sign-up
+│   ├── chat/     # Protected user dashboard
+│   └── api/           # API routes (AI, conversations, users)
+│
+├── components/        # UI components (chat, forms, cards, etc.)
+├── lib/               # Database & utilities
+├── models/            # Mongoose models (User, Blog, Conversation)
+├── node_modules/          # AI service layer (Gemini / OpenAI)
+└── public/            # public files and folders
+└── .env                # Environment variables
+└── .gitignore           # Files that should not be pushed to your repo - e.g .env
+└── .components.json            # components configuration
+└── .eslint.config.mjs           
+└── .middleware.ts           # Middleware for authenticating requests 
+└── .next-env.d.ts         # Global styles
+└── .next.config.ts        
+└── .package-lock.json         
+└── .package.json         # installed packages
+└── .README.md         
+└── .tsconfig.json        
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+🔄 How It Works
+Flow Overview
+flowchart TD
+    U[👤 User] -->|Sign In / Sign Up| C[Clerk Auth]
+    C -->|Auth Token| N[Next.js App]
+    N -->|Ensure Synced| DB[(MongoDB Atlas)]
+    U -->|Enter Prompt| N
+    N -->|Send Request| G[Gemini API]
+    G -->|Generated Content| N
+    N -->|Save Response| DB
+    DB -->|Conversation History| N
+    N -->|Render Markdown| UI[🖥️ Frontend UI]
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Step-by-Step
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Authentication — Users sign up or log in using Clerk.
 
-## Deploy on Vercel
+User Sync — On first login, the app ensures the user exists in MongoDB.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Prompt Submission — User enters a blog prompt via the chat interface.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+AI Generation — The prompt + history are sent to Gemini, which returns AI-generated content.
+
+Persistence — The conversation and generated content are saved in MongoDB.
+
+Rendering — The frontend displays the markdown-formatted blog post, with suggested image placeholders.
+
+
+
+🖼️ Screenshots
+
+(Add screenshots here once deployed!)
+
+
+🌍 Deployment
+Deploy on Vercel
+
+Push repo to GitHub
+
+Import into Vercel
+
+Add environment variables in Vercel Dashboard
+
+Deploy 🚀
+
+
+🤝 Contributing
+
+Contributions are welcome! Please fork the repo and create a pull request.
+
+📜 License
+
+MIT License © 2025 Igboji Paul Chidiebube
+
+
+🙌 Acknowledgements
+
+Next.js
+
+Clerk
+
+MongoDB
+
+Google Gemini AI
+
+TailwindCSS
+
+ShadCN UI
